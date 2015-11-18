@@ -16,3 +16,8 @@ convert_multiple_of_five_to_buzz_test() ->
     ?assertEqual("Buzz", fizzbuzz:convert(5)),
     ?assertEqual("Buzz", fizzbuzz:convert(10)),
     ?assertEqual("Buzz", fizzbuzz:convert(50)).
+
+convert_multiple_of_three_and_five_to_fizzbuzz_test() ->
+    ?assertEqual("FizzBuzz", fizzbuzz:convert(15)),
+    ?assertEqual("FizzBuzz", fizzbuzz:convert(225)),
+    ?assertEqual("FizzBuzz", fizzbuzz:convert(555)).

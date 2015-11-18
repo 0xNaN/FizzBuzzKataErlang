@@ -4,6 +4,8 @@
 -define(FIZZ, "Fizz").
 -define(BUZZ, "Buzz").
 
+convert(N) when N rem 15 =:= 0 ->
+    ?FIZZ ++ ?BUZZ;
 convert(N) when N rem 3 =:= 0 ->
     ?FIZZ;
 convert(N) when N rem 5 =:= 0 ->
