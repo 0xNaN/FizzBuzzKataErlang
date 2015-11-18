@@ -1,9 +1,14 @@
 -module(fizzbuzz).
--export([convert/1]).
+-export([convert/1, convert/2, start/2]).
 
 -define(FIZZ, "Fizz").
 -define(BUZZ, "Buzz").
 
+start(Collector, Number) ->
+    spawn(fizzbuzz, convert, [Collector, Number]).
+
+convert(Collector, Number) ->
+    Collector ! {self(), {Number, convert(Number)}}.
 convert(N) when N rem 15 =:= 0 ->
     ?FIZZ ++ ?BUZZ;
 convert(N) when N rem 3 =:= 0 ->

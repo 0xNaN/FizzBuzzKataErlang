@@ -21,3 +21,12 @@ convert_multiple_of_three_and_five_to_fizzbuzz_test() ->
     ?assertEqual("FizzBuzz", fizzbuzz:convert(15)),
     ?assertEqual("FizzBuzz", fizzbuzz:convert(225)),
     ?assertEqual("FizzBuzz", fizzbuzz:convert(555)).
+
+run_a_fizzbuzz_process_and_send_result_test() ->
+    Collector = self(),
+    FizzBuzz = fizzbuzz:start(Collector, 1),
+    receive
+        {FizzBuzz, {Number, Ret}} ->
+            ?assertEqual(1, Number),
+            ?assertEqual("1", Ret)
+    end.
