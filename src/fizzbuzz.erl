@@ -1,8 +1,7 @@
 -module(fizzbuzz).
 -export([convert/1]).
 
-convert(1) -> "1";
-convert(2) -> "2".
+convert(N) -> integer_to_list(N).
 
 -ifdef(TEST).
 -include_lib("../test/fizzbuzz.hrl").
