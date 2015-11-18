@@ -9,3 +9,6 @@ convert_two_to_two_test() ->
 convert_three_to_fizz_test() ->
     ?assertEqual("Fizz", fizzbuzz:convert(3)).
 
+convert_five_to_buzz_test() ->
+    ?assertEqual("Buzz", fizzbuzz:convert(5)).
+
