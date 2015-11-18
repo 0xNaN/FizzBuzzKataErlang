@@ -1,11 +1,11 @@
--module(fizzbuzz).
+-module(converter).
 -export([convert/1, convert/2, start/2]).
 
 -define(FIZZ, "Fizz").
 -define(BUZZ, "Buzz").
 
 start(Collector, Number) ->
-    spawn(fizzbuzz, convert, [Collector, Number]).
+    spawn(converter, convert, [Collector, Number]).
 
 convert(Collector, Number) ->
     Collector ! {self(), {Number, convert(Number)}}.
@@ -19,5 +19,5 @@ convert(N) ->
     integer_to_list(N).
 
 -ifdef(TEST).
--include_lib("../test/fizzbuzz.hrl").
+-include_lib("../test/converter.hrl").
 -endif.

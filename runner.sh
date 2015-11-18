@@ -1,4 +1,4 @@
 #! /bin/bash
-erlc -DTEST src/fizzbuzz.erl
-erl -noshell -s fizzbuzz test \
+erlc -DTEST src/converter.erl
+erl -noshell -s converter test \
             -s init stop
