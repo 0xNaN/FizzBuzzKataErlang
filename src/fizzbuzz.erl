@@ -12,7 +12,7 @@ start(N) ->
     end.
 
 compare_on_first_elem({A, _}, {B, _}) -> A =< B.
-second_elem({_, A}) -> A.
+second_elem(A) -> element(2, A).
 
 -ifdef(TEST).
 -include_lib("../test/fizzbuzz.hrl").
