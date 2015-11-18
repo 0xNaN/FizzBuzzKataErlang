@@ -10,10 +10,10 @@ start(N) ->
     end.
 
 sort(UnsortedConverted) ->
-    SortedNumber = lists:sort(fun({A, _}, {B, _}) ->
-                                    A =< B
-                              end, UnsortedConverted),
+    SortedNumber = lists:sort(fun compare_on_first_elem/2, UnsortedConverted),
     lists:map(fun({_, A}) -> A end, SortedNumber).
+
+compare_on_first_elem({A, _}, {B, _}) -> A =< B.
 
 -ifdef(TEST).
 -include_lib("../test/fizzbuzz.hrl").
