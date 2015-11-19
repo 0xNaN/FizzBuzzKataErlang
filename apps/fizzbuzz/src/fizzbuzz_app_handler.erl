@@ -18,10 +18,13 @@ terminate(_Reason, _Req, _State) ->
 handle_request(<<"GET">>, Req) ->
     {RawNumber, Req1} = cowboy_req:binding(number, Req),
     {ok, FizzBuzzResult} = make_fizzbuzz_result(RawNumber),
-    {ok, Req3} = cowboy_req:reply(200, [], FizzBuzzResult, Req1),
+    {ok, Req3} = cowboy_req:reply(200, [
+                                        {<<"content-type">>, <<"application/json">>}
+                                       ], FizzBuzzResult, Req1),
     {ok, Req3}.
 
 make_fizzbuzz_result(RawNumber) ->
     Number = binary_to_integer(RawNumber),
-    Ret = fizzbuzz:start(Number),
-    {ok, binary:list_to_bin(Ret)}.
+    FizzBuzzList = fizzbuzz:start(Number),
+    FizzBuzzEncoded = jsx:encode(lists:map(fun list_to_atom /1, FizzBuzzList)),
+    {ok, jsx:prettify(FizzBuzzEncoded)}.
