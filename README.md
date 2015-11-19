@@ -1,22 +1,13 @@
-# FizzBuzzKata with Erlang
+FizzBuzz Erlang
+==================
 
-`runner.sh` to run all tests.
+My solution to FizzBuzzKata with Erlang on cowboy.
+Run `fizzbuzz` and go to `localhost:8080/15`
 
-# Execute
-```
-      
-  $ cd src/
-  $ erl
-  1> c(fizzbuzz).
-  {ok,fizzbuzz}
-  2> c(collector).
-  {ok,collector}
-  3> c(converter).
-  {ok,converter}
-  4> fizzbuzz:start(15).
-  ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz",
-   "11","Fizz","13","14","FizzBuzz"]
-  5> 
+Build
+-----
 
-```
-
+    $ rebar3 compile
+    $ rebar3 release
+    $ ./_build/default/rel/fizzbuzz/bin/fizzbuzz start
+    $ ./_build/default/rel/fizzbuzz/bin/fizzbuzz stop
