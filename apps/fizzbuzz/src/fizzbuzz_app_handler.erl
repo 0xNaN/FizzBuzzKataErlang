@@ -16,6 +16,12 @@ terminate(_Reason, _Req, _State) ->
     ok.
 
 handle_request(<<"GET">>, Req) ->
-    {Number, Req2} = cowboy_req:binding(number, Req),
-    {ok, Req3} = cowboy_req:reply(200, [], Number, Req2),
+    {RawNumber, Req1} = cowboy_req:binding(number, Req),
+    {ok, FizzBuzzResult} = make_fizzbuzz_result(RawNumber),
+    {ok, Req3} = cowboy_req:reply(200, [], FizzBuzzResult, Req1),
     {ok, Req3}.
+
+make_fizzbuzz_result(RawNumber) ->
+    Number = binary_to_integer(RawNumber),
+    Ret = fizzbuzz:start(Number),
+    {ok, binary:list_to_bin(Ret)}.
