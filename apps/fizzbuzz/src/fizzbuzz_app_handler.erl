@@ -8,7 +8,14 @@ init(_Transport, Req, []) ->
     {ok, Req, undefined}.
 
 handle(Req, State) ->
-    {ok, Req}.
+    {Method, Req2} = cowboy_req:method(Req),
+    {ok, Req3} = handle_request(Method, Req2),
+    {ok, Req3, State}.
 
 terminate(_Reason, _Req, _State) ->
     ok.
+
+handle_request(<<"GET">>, Req) ->
+    {Number, Req2} = cowboy_req:binding(number, Req),
+    {ok, Req3} = cowboy_req:reply(200, [], Number, Req2),
+    {ok, Req3}.
